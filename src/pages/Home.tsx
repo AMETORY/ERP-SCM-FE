@@ -53,22 +53,22 @@ const Home: FC<HomeProps> = ({}) => {
 
   useEffect(() => {
     if (mounted) {
-      getSalesTimeRange(timeRange).then((resp: any) => {
-        setSalesAmount(resp.data);
-      });
-      getPurchaseTimeRange(timeRange).then((resp: any) => {
-        setPurchaseAmount(resp.data);
-      });
-      getNetWorth().then((resp: any) => {
-        setNetWorth(resp.data);
-      });
-      getCashBankSum().then((resp: any) => {
-        setCashBank(resp.data);
-      });
-      getSalesPurchaseList().then((resp: any) => {
-        setSales(resp.data.sales);
-        setPurchases(resp.data.purchase);
-      });
+      // getSalesTimeRange(timeRange).then((resp: any) => {
+      //   setSalesAmount(resp.data);
+      // });
+      // getPurchaseTimeRange(timeRange).then((resp: any) => {
+      //   setPurchaseAmount(resp.data);
+      // });
+      // getNetWorth().then((resp: any) => {
+      //   setNetWorth(resp.data);
+      // });
+      // getCashBankSum().then((resp: any) => {
+      //   setCashBank(resp.data);
+      // });
+      // getSalesPurchaseList().then((resp: any) => {
+      //   setSales(resp.data.sales);
+      //   setPurchases(resp.data.purchase);
+      // });
     }
   }, [mounted, timeRange]);
   return (

@@ -23,3 +23,9 @@ export const getVillages = async (districtId: string) => {
     method: "GET",
   });
 };
+
+export const searchLocation = async (searchQuery: string) => {
+  return await customFetch(`api/v1/regional/place?search=${searchQuery}`, {
+    method: "GET",
+  });
+};

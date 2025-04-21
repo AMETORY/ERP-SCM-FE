@@ -1,7 +1,7 @@
 import { HR, Tooltip } from "flowbite-react";
 import { useContext, useEffect, useState, type FC } from "react";
 import { AiOutlineDashboard } from "react-icons/ai";
-import { LuPowerOff, LuWarehouse } from "react-icons/lu";
+import { LuMapPin, LuPin, LuPowerOff, LuWarehouse } from "react-icons/lu";
 import { RiShoppingBagLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { CollapsedContext } from "../contexts/CollapsedContext";
@@ -14,6 +14,7 @@ import {
   LOCAL_STORAGE_TOKEN,
 } from "../utils/constants";
 import Logo from "./logo";
+import { BsTruck } from "react-icons/bs";
 
 interface SidebarProps {}
 
@@ -85,6 +86,21 @@ const Sidebar: FC<SidebarProps> = ({}) => {
           >
             Feature
           </li>
+          <li className=" cursor-pointer" style={{}}>
+            <span
+              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer"
+              onClick={handleNavigation("/distribution-event")}
+            >
+              <Tooltip content="Distribution Event">
+                <BsTruck />
+              </Tooltip>
+              {!collapsed && (
+                <span className="flex-1 ms-3 whitespace-nowrap">
+                  Distribution Event
+                </span>
+              )}
+            </span>
+          </li>
         </>
 
         <>
@@ -115,17 +131,31 @@ const Sidebar: FC<SidebarProps> = ({}) => {
           <li className=" cursor-pointer" style={{}}>
             <span
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer"
-              onClick={handleNavigation("/warehouse")}
+              onClick={handleNavigation("/storage")}
             >
-              <Tooltip content="Warehouse">
+              <Tooltip content="storage">
                 <LuWarehouse />
               </Tooltip>
               {!collapsed && (
-                <span className="flex-1 ms-3 whitespace-nowrap">Warehouse</span>
+                <span className="flex-1 ms-3 whitespace-nowrap">Storage</span>
               )}
             </span>
           </li>
         )}
+
+<li className=" cursor-pointer" style={{}}>
+            <span
+              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer"
+              onClick={handleNavigation("/location")}
+            >
+              <Tooltip content="Location">
+                <LuMapPin />
+              </Tooltip>
+              {!collapsed && (
+                <span className="flex-1 ms-3 whitespace-nowrap">Location</span>
+              )}
+            </span>
+          </li>
 
         {/* {activeCompany?.is_cooperation && (
           <>

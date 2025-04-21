@@ -63,56 +63,58 @@ const WarehouseTable: FC<WarehouseTableProps> = ({}) => {
           />
         </div>
       </div>
-      <Table hoverable>
-        <Table.Head>
-          <Table.HeadCell>Name</Table.HeadCell>
-          <Table.HeadCell>Description</Table.HeadCell>
-          <Table.HeadCell></Table.HeadCell>
-        </Table.Head>
-        <Table.Body>
-          {warehouses.length === 0 && (
-            <Table.Row>
-              <Table.Cell colSpan={5} className="text-center">
-                No data found.
-              </Table.Cell>
-            </Table.Row>
-          )}
-          {warehouses.map((warehouse) => (
-            <Table.Row key={warehouse.id}>
-              <Table.Cell>{warehouse.name}</Table.Cell>
-              <Table.Cell>{warehouse.description}</Table.Cell>
-              <Table.Cell>
-                <a
-                  className="font-medium text-cyan-600 hover:underline dark:text-cyan-500 cursor-pointer"
-                  onClick={() => {
-                    setWarehouse(warehouse);
-                    setShowModal(true);
-                  }}
-                >
-                  Edit
-                </a>
-                <a
-                  className="font-medium text-red-600 hover:underline dark:text-red-500 ms-2 cursor-pointer"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (
-                      window.confirm(
-                        `Are you sure you want to delete  ${warehouse.name}?`
-                      )
-                    ) {
-                      deleteWarehouse(warehouse?.id!).then(() => {
-                        getAllCategories();
-                      });
-                    }
-                  }}
-                >
-                  Delete
-                </a>
-              </Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
+      <div className="overflow-x-auto">
+        <Table hoverable>
+          <Table.Head>
+            <Table.HeadCell>Name</Table.HeadCell>
+            <Table.HeadCell>Description</Table.HeadCell>
+            <Table.HeadCell></Table.HeadCell>
+          </Table.Head>
+          <Table.Body>
+            {warehouses.length === 0 && (
+              <Table.Row>
+                <Table.Cell colSpan={5} className="text-center">
+                  No data found.
+                </Table.Cell>
+              </Table.Row>
+            )}
+            {warehouses.map((warehouse) => (
+              <Table.Row key={warehouse.id}>
+                <Table.Cell>{warehouse.name}</Table.Cell>
+                <Table.Cell>{warehouse.description}</Table.Cell>
+                <Table.Cell>
+                  <a
+                    className="font-medium text-cyan-600 hover:underline dark:text-cyan-500 cursor-pointer"
+                    onClick={() => {
+                      setWarehouse(warehouse);
+                      setShowModal(true);
+                    }}
+                  >
+                    Edit
+                  </a>
+                  <a
+                    className="font-medium text-red-600 hover:underline dark:text-red-500 ms-2 cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (
+                        window.confirm(
+                          `Are you sure you want to delete  ${warehouse.name}?`
+                        )
+                      ) {
+                        deleteWarehouse(warehouse?.id!).then(() => {
+                          getAllCategories();
+                        });
+                      }
+                    }}
+                  >
+                    Delete
+                  </a>
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      </div>
       <Pagination
         className="mt-4"
         currentPage={page}

@@ -852,9 +852,7 @@ const ProductDetail: FC<ProductDetailProps> = ({}) => {
                         Quantity
                       </th>
 
-                      <th className="px-2 py-1 text-xs border border-gray-300">
-                        Merchant
-                      </th>
+                      
                       <th className="px-2 py-1 text-xs border border-gray-300">
                         Warehouse
                       </th>
@@ -876,14 +874,7 @@ const ProductDetail: FC<ProductDetailProps> = ({}) => {
                           {money(v.quantity)}{v.unit?.code}
                         </td>
 
-                        <td
-                          className="px-2 py-1 text-xs border cursor-pointer hover:underline border-gray-300 text-center"
-                          onClick={() => {
-                            nav(`/merchant/${v.merchant?.id}`);
-                          }}
-                        >
-                          {v.merchant?.name}
-                        </td>
+                        
                         <td
                           className="px-2 py-1 text-xs border cursor-pointer hover:underline border-gray-300 text-center"
                           onClick={() => {
