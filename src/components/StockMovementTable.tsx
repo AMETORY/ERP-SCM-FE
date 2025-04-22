@@ -73,7 +73,7 @@ const StockMovementTable: FC<StockMovementTableProps> = ({}) => {
       </div>
       <div className="h-[calc(100vh-300px)] overflow-y-auto">
         <div className=" overflow-x-auto">
-          <Table hoverable className=" ">
+          <Table striped className=" ">
             <Table.Head>
               <Table.HeadCell>Date</Table.HeadCell>
               <Table.HeadCell>Description</Table.HeadCell>

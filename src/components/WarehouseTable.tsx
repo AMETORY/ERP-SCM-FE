@@ -64,7 +64,7 @@ const WarehouseTable: FC<WarehouseTableProps> = ({}) => {
         </div>
       </div>
       <div className="overflow-x-auto">
-        <Table hoverable>
+        <Table striped>
           <Table.Head>
             <Table.HeadCell>Name</Table.HeadCell>
             <Table.HeadCell>Description</Table.HeadCell>

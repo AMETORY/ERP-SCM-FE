@@ -1,7 +1,7 @@
 import { HR, Tooltip } from "flowbite-react";
 import { useContext, useEffect, useState, type FC } from "react";
 import { AiOutlineDashboard } from "react-icons/ai";
-import { LuMapPin, LuPin, LuPowerOff, LuWarehouse } from "react-icons/lu";
+import { LuMapPin, LuPin, LuPowerOff, LuShip, LuWarehouse } from "react-icons/lu";
 import { RiShoppingBagLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { CollapsedContext } from "../contexts/CollapsedContext";
@@ -15,6 +15,7 @@ import {
 } from "../utils/constants";
 import Logo from "./logo";
 import { BsTruck } from "react-icons/bs";
+import { TbShip } from "react-icons/tb";
 
 interface SidebarProps {}
 
@@ -92,7 +93,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
               onClick={handleNavigation("/distribution-event")}
             >
               <Tooltip content="Distribution Event">
-                <BsTruck />
+                <TbShip />
               </Tooltip>
               {!collapsed && (
                 <span className="flex-1 ms-3 whitespace-nowrap">

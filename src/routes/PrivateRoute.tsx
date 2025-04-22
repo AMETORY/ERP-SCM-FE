@@ -15,6 +15,8 @@ import DistributionEventPage from "../pages/DistributionEventPage";
 import DistributionEventDetail from "../pages/DistributionEventDetail";
 import LocationPage from "../pages/LocationPage";
 import LocationDetail from "../pages/LocationDetail";
+import ShipmentPage from "../pages/ShipmentPage";
+import ShipmentDetail from "../pages/ShipmentDetail";
 
 interface PrivateRouteProps {}
 
@@ -35,6 +37,8 @@ const PrivateRoute: FC<PrivateRouteProps> = ({}) => {
         path="/stock-opname/:stockOpnameId"
         element={<StockOpnameDetail />}
       />
+      <Route path="/shipment" element={<ShipmentPage />} />
+      <Route path="/shipment/:shipmentId" element={<ShipmentDetail />} />
       <Route path="/setting" element={<SettingPage />} />
 
       <Route path="*" element={<Navigate to="/" />} />

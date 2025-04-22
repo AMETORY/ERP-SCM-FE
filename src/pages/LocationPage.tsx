@@ -469,7 +469,7 @@ const LocationPage: FC<LocationPageProps> = ({}) => {
 
                   getAllLocations();
                   setShowModal(false);
-                  setLocationType("");
+                  setLocationType("WAREHOUSE");
                   setName("");
                   setDescription("");
                   setAddress("");

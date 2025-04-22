@@ -18,6 +18,7 @@ import {
 import { PaginationResponse } from "../objects/pagination";
 import {
   createDistributionEvent,
+  deleteDistributionEvent,
   getDistributionEvents,
 } from "../services/api/logisticApi";
 import { getPagination } from "../utils/helper";
@@ -133,9 +134,11 @@ const DistributionEventPage: FC<DistributionEventPageProps> = ({}) => {
                             `Are you sure you want to delete  ${distribution.name}?`
                           )
                         ) {
-                          //   del(product?.id!).then(() => {
-                          //     getAllCategories();
-                          //   });
+                          deleteDistributionEvent(distribution?.id!).then(
+                            () => {
+                              getAllDistributionEvents()
+                            }
+                          );
                         }
                       }}
                     >

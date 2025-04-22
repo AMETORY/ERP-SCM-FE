@@ -95,7 +95,7 @@ const StockOpnameTable: FC<StockOpnameTableProps> = ({}) => {
           </div>
         </div>
         <div className="overflow-x-auto">
-          <Table className="">
+          <Table striped className="">
             <TableHead>
               <TableHeadCell>Date</TableHeadCell>
               <TableHeadCell>Number</TableHeadCell>
