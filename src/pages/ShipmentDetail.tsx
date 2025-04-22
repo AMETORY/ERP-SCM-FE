@@ -45,7 +45,9 @@ import { TbTruck } from "react-icons/tb";
 import {
   calculateZoom,
   generateGoogleMapsDirectionsURLByCoords,
+  getDistanceInKm,
   getMidpoint,
+  money,
 } from "../utils/helper";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { searchLocation } from "../services/api/regionalApi";
@@ -262,6 +264,24 @@ const ShipmentDetail: FC<ShipmentDetailProps> = ({}) => {
                       {shipment?.status}
                     </Badge>
                   </div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/2 font-semibold px-2 py-1">Avg Distance</td>
+                <td className="px-2 py-1">
+                  {money(
+                    getDistanceInKm(
+                      {
+                        lat: shipment?.from_location?.latitude,
+                        lng: shipment?.from_location?.longitude,
+                      },
+                      {
+                        lat: shipment?.to_location?.latitude,
+                        lng: shipment?.to_location?.longitude,
+                      }
+                    )
+                  )}{" "}
+                  Km
                 </td>
               </tr>
               <tr>
@@ -845,6 +865,31 @@ const ShipmentDetail: FC<ShipmentDetailProps> = ({}) => {
         </ModalHeader>
         <ModalBody>
           <div className="flex flex-col space-y-4">
+            <Link
+              className="text-blue-500 cursor-pointer hover:underline"
+              target="_blank"
+              to={generateGoogleMapsDirectionsURLByCoords(
+                {
+                  lat: selectedLeg?.from_location?.latitude,
+                  lng: selectedLeg?.from_location?.longitude,
+                },
+                {
+                  lat: selectedLeg?.to_location?.latitude,
+                  lng: selectedLeg?.to_location?.longitude,
+                }
+              )}
+            >
+              {generateGoogleMapsDirectionsURLByCoords(
+                {
+                  lat: selectedLeg?.from_location?.latitude,
+                  lng: selectedLeg?.from_location?.longitude,
+                },
+                {
+                  lat: selectedLeg?.to_location?.latitude,
+                  lng: selectedLeg?.to_location?.longitude,
+                }
+              )}
+            </Link>
             <MapContainer
               center={[centerLeg?.lat!, centerLeg?.lng!]}
               zoom={zoom}
