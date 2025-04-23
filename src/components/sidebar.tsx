@@ -15,7 +15,7 @@ import {
 } from "../utils/constants";
 import Logo from "./logo";
 import { BsTruck } from "react-icons/bs";
-import { TbShip } from "react-icons/tb";
+import { TbShip, TbTruck } from "react-icons/tb";
 
 interface SidebarProps {}
 
@@ -98,6 +98,21 @@ const Sidebar: FC<SidebarProps> = ({}) => {
               {!collapsed && (
                 <span className="flex-1 ms-3 whitespace-nowrap">
                   Distribution Event
+                </span>
+              )}
+            </span>
+          </li>
+          <li className=" cursor-pointer" style={{}}>
+            <span
+              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer"
+              onClick={handleNavigation("/shipment")}
+            >
+              <Tooltip content="Shipment">
+                <TbTruck />
+              </Tooltip>
+              {!collapsed && (
+                <span className="flex-1 ms-3 whitespace-nowrap">
+                  Shipment
                 </span>
               )}
             </span>

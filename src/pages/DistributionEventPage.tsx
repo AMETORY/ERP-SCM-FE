@@ -70,7 +70,7 @@ const DistributionEventPage: FC<DistributionEventPageProps> = ({}) => {
 
   return (
     <AdminLayout>
-      <div className="p-8 h-[calc(100vh-100px)] overflow-y-auto">
+      <div className="p-8 h-[calc(100vh-100px)] overflow-y-auto" >
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-3xl font-bold ">Distribution Event</h1>
           <Button
@@ -90,7 +90,7 @@ const DistributionEventPage: FC<DistributionEventPageProps> = ({}) => {
               <TableHeadCell>Description</TableHeadCell>
               <TableHeadCell>Start Date</TableHeadCell>
               <TableHeadCell>End Date</TableHeadCell>
-              <TableHeadCell></TableHeadCell>
+              <TableHeadCell className="w-36"></TableHeadCell>
             </TableHead>
             <TableBody>
               {distributions.length == 0 && (

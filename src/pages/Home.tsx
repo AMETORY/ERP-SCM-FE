@@ -73,7 +73,7 @@ const Home: FC<HomeProps> = ({}) => {
   }, [mounted, timeRange]);
   return (
     <AdminLayout>
-      <div className=" bg-gray-50 h-[calc(100vh-60px)] overflow-y-auto">
+      <div className="">
       
       </div>
     </AdminLayout>
