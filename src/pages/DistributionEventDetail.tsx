@@ -281,7 +281,7 @@ const DistributionEventDetail: FC<DistributionEventDetailProps> = ({}) => {
                             : "gray"
                         }
                       >
-                        {shipment?.status}
+                        {shipment?.status?.replaceAll("_", " ")}
                       </Badge>
                       </div>
                     </TableCell>

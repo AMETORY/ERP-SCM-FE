@@ -218,6 +218,15 @@ const ShipmentDetail: FC<ShipmentDetailProps> = ({}) => {
                       IN DELIVERY
                     </Button>
                   )}
+
+                  {shipment?.status == "IN_DELIVERY" &&
+                    (shipment?.shipment_legs ?? [])
+                      .map((e) => e.status)
+                      .every((e) => e == "ARRIVED") && (
+                      <Button size="xs" onClick={() => {}} color="red">
+                        FINISH
+                      </Button>
+                    )}
                 </td>
               </tr>
             </table>
@@ -261,7 +270,7 @@ const ShipmentDetail: FC<ShipmentDetailProps> = ({}) => {
                           : "gray"
                       }
                     >
-                      {shipment?.status}
+                      {shipment?.status?.replaceAll("_", " ")}
                     </Badge>
                   </div>
                 </td>
@@ -459,7 +468,7 @@ const ShipmentDetail: FC<ShipmentDetailProps> = ({}) => {
                               : "gray"
                           }
                         >
-                          {item?.status}
+                          {item?.status.replaceAll("_", " ")}
                         </Badge>
                       </div>
                     </Table.Cell>
@@ -841,6 +850,16 @@ const ShipmentDetail: FC<ShipmentDetailProps> = ({}) => {
                     date: date,
                     notes: notes,
                   });
+
+                  if (
+                    selectedLeg?.seq_number == 1 &&
+                    shipment?.status == "READY_TO_SHIP"
+                  ) {
+                    await updateShipmentStatus(shipment?.id, {
+                      status: "IN_DELIVERY",
+                    });
+                  }
+
                   getDetail();
                   setShowModalLeg(false);
                 } catch (error) {
@@ -855,7 +874,7 @@ const ShipmentDetail: FC<ShipmentDetailProps> = ({}) => {
         </ModalFooter>
       </Modal>
       <Modal
-        size="4xl"
+        size="7xl"
         show={showLegDetail}
         onClose={() => setShowLegDetail(false)}
       >
@@ -934,19 +953,22 @@ const ShipmentDetail: FC<ShipmentDetailProps> = ({}) => {
               ))}
               <MapCenterUpdater center={[centerLeg?.lat!, centerLeg?.lng!]} />
             </MapContainer>
-            {selectedLeg?.status == "IN_DELIVERY" && (
+            {(selectedLeg?.status == "IN_DELIVERY" ||
+              selectedLeg?.status == "ARRIVED") && (
               <div>
                 <div className="flex justify-between mb-4">
                   <h3 className="font-semibold text-xl">Tracking</h3>
-                  <Button
-                    size="xs"
-                    color="gray"
-                    onClick={() => {
-                      setShowTrackingModal(true);
-                    }}
-                  >
-                    + Track
-                  </Button>
+                  {selectedLeg?.status == "IN_DELIVERY" && (
+                    <Button
+                      size="xs"
+                      color="gray"
+                      onClick={() => {
+                        setShowTrackingModal(true);
+                      }}
+                    >
+                      + Track
+                    </Button>
+                  )}
                 </div>
                 <div className="overflow-x-auto">
                   <Table hoverable>
@@ -955,6 +977,7 @@ const ShipmentDetail: FC<ShipmentDetailProps> = ({}) => {
                       <TableHeadCell>Location</TableHeadCell>
                       <TableHeadCell>Timestamp</TableHeadCell>
                       <TableHeadCell>Coordinate</TableHeadCell>
+                      <TableHeadCell>Notes</TableHeadCell>
                       <TableHeadCell>Status</TableHeadCell>
                     </TableHead>
                     <TableBody>
@@ -976,7 +999,7 @@ const ShipmentDetail: FC<ShipmentDetailProps> = ({}) => {
                               </Moment>
                             </TableCell>
                             <TableCell
-                              className="cursor-pointer"
+                              className="cursor-pointer hover:underline"
                               onClick={() =>
                                 setCenterLeg({
                                   lat: event.latitude,
@@ -986,7 +1009,8 @@ const ShipmentDetail: FC<ShipmentDetailProps> = ({}) => {
                             >
                               {event.latitude},{event.longitude}
                             </TableCell>
-                            <TableCell>{event.status}</TableCell>
+                            <TableCell>{event.notes}</TableCell>
+                            <TableCell>{event.status.replaceAll("_", " ")}</TableCell>
                           </TableRow>
                         )
                       )}
